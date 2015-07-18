@@ -1,0 +1,20 @@
+{
+  "name": "learnrx-bdd",
+  "version": "0.0.1",
+  "description": "Learn RxJS in a BDD way",
+  "author": "Erwan Thomas <janotus@maen.fr>",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erwanthomas/learnrx-bdd.git"
+  },
+  "dependencies": {
+    "chai": "*",
+    "eslint": "*",
+    "lodash": "*",
+    "mocha": "*"
+  },
+  "license": "MIT"
+}
