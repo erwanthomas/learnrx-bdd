@@ -49,7 +49,7 @@ _projection_. To project one array into another, we apply a projection
 function to each item in the array and collect the results in a new
 array.
 
-*Exercise 3: Project an array of videos into an array of `{id,title}`
+*Exercise 3: Project the following array of videos into an array of `{id,title}`
 pairs using `forEach`.*
 
 ```json
@@ -107,7 +107,7 @@ pairs using `forEach`.*
 ]
 ```
 
-For each video, add a projected `{ id, title }` pair to the
+For each video in this `newReleases` array, add a projected `{ id, title }` pair to the
 `videoAndTitlePairs` array.
 
 ```javascript
@@ -139,7 +139,7 @@ type. `map` accepts the projection function to be applied to each item in
 the source array, and returns the projected array.
 
 ```javascript
-// Pretend the function belongs to Array.prototype
+// Let's pretend this function belongs to Array.prototype
 function ex004(projectionFunction) {
   var results = [];
 
