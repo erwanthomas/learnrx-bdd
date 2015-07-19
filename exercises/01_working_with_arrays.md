@@ -171,6 +171,32 @@ function ex005(newReleases) {
 }
 ```
 
+Notice that map allows us to specify _what_ projection we want to apply
+to an array, but hides _how_ the operation is carried out.
+
+## Filtering Arrays
+
+Like projection, filtering an array is also a very common operation. To
+filter an array we apply a test to each item in the array and collect
+the items that pass into a new array.
+
+*Exercise 6: Use `forEach` to collect only those videos with a rating of 5.0*
+
+Use `forEach` to loop through the videos in the `newReleases` array and,
+if a video has a rating of 5.0, add it to the `videos` array.
+
+```javascript
+function ex006(newReleases) {
+  var videos = [];
+
+  // ------------ INSERT CODE HERE! -----------------------------------
+  // Use forEach function to accumulate every video with a rating of 5.0
+  // ------------ INSERT CODE HERE! -----------------------------------
+
+  return videos;
+}
+```
+
 *Please don't pay attention to the following code:*
 
 ```javascript
@@ -179,6 +205,7 @@ module.exports = {
   '002': ex002,
   '003': ex003,
   '004': ex004,
-  '005': ex005
+  '005': ex005,
+  '006': ex006
 };
 ```
