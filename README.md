@@ -12,6 +12,7 @@ The original tutorial can be found
 ```sh
 git clone https://github.com/erwanthomas/learnrx-bdd.git
 cd learnrx-bdd
+npm install
 npm run init
 npm run start
 ```
@@ -20,4 +21,4 @@ Then answer the exercises by editing the `exercises/local/*.md` files.
 They will automatically be compiled on save to their javascript-only
 version in the same folder.
 
-Now, when you want to test your progression, simply run `npm run test`.
+When you want to test your progression, simply run `npm run test`.
