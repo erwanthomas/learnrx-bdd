@@ -2,10 +2,11 @@ var expect    = require('chai').expect;
 var data      = require('../data/all');
 var solutions = require('../solutions/all');
 var exercises = require('../exercises/all');
+var Pconsole  = require('../utils/pconsole');
 
 function consoleTest(id) {
   return function () {
-    var pconsole = require('../utils/pconsole.js').create();
+    var pconsole = new Pconsole();
 
     function invoke(func, console, names) {
       func(console, names);
@@ -52,6 +53,10 @@ describe('Working with arrays:', function () {
 
       expect(exercise).to.deep.equal(solution);
     });
+  });
+
+  describe('Exercise 5', function () {
+    it('should use map() to project an array of videos into an array of { id, title } pairs', deepEqualTest('005'));
   });
 
 });

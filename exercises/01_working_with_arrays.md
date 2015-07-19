@@ -156,6 +156,21 @@ function ex004(projectionFunction) {
 }
 ```
 
+*Exercise 5: Use `map` to project an array of videos into an array of
+`{ id, title }` pairs*
+
+Let's repeat the exercise of collecting `{ id, title }` pairs for each video
+in the `newReleases` array, but **this time we'll use our map function**.
+
+```javascript
+function ex005(newReleases) {
+  // ------------ INSERT CODE HERE! -----------------------------------
+  // Use map function to accumulate {id, title} pairs from each video.
+  // ------------ INSERT CODE HERE! -----------------------------------
+  return newReleases.map // finish this expression!
+}
+```
+
 *Please don't pay attention to the following code:*
 
 ```javascript
@@ -163,6 +178,7 @@ module.exports = {
   '001': ex001,
   '002': ex002,
   '003': ex003,
-  '004': ex004
+  '004': ex004,
+  '005': ex005
 };
 ```

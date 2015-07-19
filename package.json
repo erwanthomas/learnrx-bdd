@@ -5,7 +5,7 @@
   "author": "Erwan Thomas <janotus@maen.fr>",
   "scripts": {
     "test": "mocha test/",
-    "init": "mkdir ./exercises/local && cp ./exercises/*.md ./exercises/local/",
+    "init": "mkdir -p ./exercises/local && cp ./exercises/*.md ./exercises/local/",
     "start": "node ./watcher.js"
   },
   "repository": {

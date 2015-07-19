@@ -58,5 +58,7 @@ var newReleases = [
 module.exports = {
   '001': names,
   '002': names,
-  '003': newReleases
+  '003': newReleases,
+  '004': null,
+  '005': newReleases
 };

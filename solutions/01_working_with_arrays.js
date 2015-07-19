@@ -38,9 +38,16 @@ function sol004(projectionFunction) {
   return results;
 }
 
+function sol005(newReleases) {
+  return newReleases.map(function (video) {
+    return { id: video.id, title: video.title };
+  });
+}
+
 module.exports = {
   '001': sol001,
   '002': sol002,
   '003': sol003,
-  '004': sol004
+  '004': sol004,
+  '005': sol005
 };
