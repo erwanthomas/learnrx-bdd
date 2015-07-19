@@ -3,7 +3,7 @@
 var assign = require('lodash/object/assign');
 
 function addPath(filename) {
-  return './local/' + filename;
+  return './' + filename;
 };
 
 var chapters = [

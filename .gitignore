@@ -1,3 +1,4 @@
 node_modules
-exercises/*.js
-!exercises/all.js
+npm-debug.log
+
+exercises/local

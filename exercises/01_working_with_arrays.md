@@ -120,7 +120,6 @@ function ex003(newReleases) {
   // push() method. Example: videoAndTitlePairs.push(newItem);
   // ------------ INSERT CODE HERE! -----------------------------------
 
-
   return videoAndTitlePairs;
 }
 ```
@@ -156,6 +155,8 @@ function ex004(projectionFunction) {
   return results;
 }
 ```
+
+*Please don't pay attention to the following code:*
 
 ```javascript
 module.exports = {

@@ -4,7 +4,9 @@
   "description": "Learn RxJS in a BDD way",
   "author": "Erwan Thomas <janotus@maen.fr>",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha test/",
+    "init": "mkdir ./exercises/local && cp ./exercises/*.md ./exercises/local/",
+    "start": "node ./watcher.js"
   },
   "repository": {
     "type": "git",
@@ -14,7 +16,8 @@
     "chai": "*",
     "eslint": "*",
     "lodash": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "watch": "*"
   },
   "license": "MIT"
 }

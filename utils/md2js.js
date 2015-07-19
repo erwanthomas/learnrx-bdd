@@ -3,12 +3,16 @@
 var fs = require('fs');
 var _  = require('lodash');
 
+function rmDotMD(filename) {
+  return filename.replace(/\.md$/, '');
+}
+
 function readMDLines(filename) {
-  return fs.readFileSync(filename + '.md', 'utf8').split('\n');
+  return fs.readFileSync(rmDotMD(filename) + '.md', 'utf8').split('\n');
 }
 
 function writeJSLines(filename, content) {
-  fs.writeFileSync(filename + '.js', content.join('\n'));
+  fs.writeFileSync(rmDotMD(filename) + '.js', content.join('\n'));
   return content.length;
 }
 
