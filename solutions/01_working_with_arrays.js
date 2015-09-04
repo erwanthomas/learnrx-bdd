@@ -44,10 +44,23 @@ function sol005(newReleases) {
   });
 }
 
+function sol006(newReleases) {
+  var videos = [];
+
+  newReleases.forEach(function (video) {
+    if (video.rating === 5.0) {
+      videos.push(video);
+    }
+  });
+
+  return videos;
+}
+
 module.exports = {
   '001': sol001,
   '002': sol002,
   '003': sol003,
   '004': sol004,
-  '005': sol005
+  '005': sol005,
+  '006': sol006,
 };

@@ -59,4 +59,7 @@ describe('Working with arrays:', function () {
     it('should use map() to project an array of videos into an array of { id, title } pairs', deepEqualTest('005'));
   });
 
+  describe('Exercise 6', function () {
+    it('should use `forEach` to collect only those videos with a rating of 5.0', deepEqualTest('006'));
+  });
 });

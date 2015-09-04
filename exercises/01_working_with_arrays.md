@@ -39,8 +39,8 @@ function ex002(console, names) {
 }
 ```
 
-Notice that `forEach` lets us specify _what_ we want to happen to each item
-in the array, but hides _how_ the array is traversed.
+Notice that `forEach` lets us specify _what_ we want to happen to each
+item in the array, but hides _how_ the array is traversed.
 
 ## Projecting Arrays
 
@@ -49,8 +49,8 @@ _projection_. To project one array into another, we apply a projection
 function to each item in the array and collect the results in a new
 array.
 
-*Exercise 3: Project the following array of videos into an array of `{id,title}`
-pairs using `forEach`.*
+*Exercise 3: Project the following array of videos into an array of
+`{id,title}` pairs using `forEach`.*
 
 ```json
 [
@@ -59,9 +59,7 @@ pairs using `forEach`.*
     "title":"Die Hard",
     "boxart":"http://cdn-0.nflximg.com/images/2891/DieHard.jpg",
     "uri":"http://api.netflix.com/catalog/titles/movies/70111470",
-    "rating":[
-      4.0
-    ],
+    "rating": 4.0,
     "bookmark":[]
   },
   {
@@ -69,9 +67,7 @@ pairs using `forEach`.*
     "title":"Bad Boys",
     "boxart":"http://cdn-0.nflximg.com/images/2891/BadBoys.jpg",
     "uri":"http://api.netflix.com/catalog/titles/movies/70111470",
-    "rating":[
-      5.0
-    ],
+    "rating": 5.0,
     "bookmark":[
       {
         "id":432534,
@@ -84,9 +80,7 @@ pairs using `forEach`.*
     "title":"The Chamber",
     "boxart":"http://cdn-0.nflximg.com/images/2891/TheChamber.jpg",
     "uri":"http://api.netflix.com/catalog/titles/movies/70111470",
-    "rating":[
-      4.0
-    ],
+    "rating": 4.0,
     "bookmark":[]
   },
   {
@@ -94,9 +88,7 @@ pairs using `forEach`.*
     "title":"Fracture",
     "boxart":"http://cdn-0.nflximg.com/images/2891/Fracture.jpg",
     "uri":"http://api.netflix.com/catalog/titles/movies/70111470",
-    "rating":[
-      5.0
-    ],
+    "rating": 5.0,
     "bookmark":[
       {
         "id":432534,
@@ -107,8 +99,8 @@ pairs using `forEach`.*
 ]
 ```
 
-For each video in this `newReleases` array, add a projected `{ id, title }` pair to the
-`videoAndTitlePairs` array.
+For each video in this `newReleases` array, add a projected `{ id, title
+}` pair to the `videoAndTitlePairs` array.
 
 ```javascript
 function ex003(newReleases) {
@@ -134,11 +126,11 @@ Why not abstract away _how_ these operations are carried out?
 *Exercise 4: implement `map`.*
 
 To make projections easier, let's add a `map` function to the `Array`
-type. `map` accepts the projection function to be applied to each item in
-the source array, and returns the projected array.
+type. `map` accepts the projection function to be applied to each item
+in the source array, and returns the projected array.
 
 ```javascript
-// Let's pretend this function belongs to Array.prototype
+// Let's pretend this function is a method of Array.prototype
 function ex004(projectionFunction) {
   var results = [];
 
@@ -159,8 +151,9 @@ function ex004(projectionFunction) {
 *Exercise 5: Use `map` to project an array of videos into an array of
 `{ id, title }` pairs*
 
-Let's repeat the exercise of collecting `{ id, title }` pairs for each video
-in the `newReleases` array, but **this time we'll use our map function**.
+Let's repeat the exercise of collecting `{ id, title }` pairs for each
+video in the `newReleases` array, but **this time we'll use our map
+function**.
 
 ```javascript
 function ex005(newReleases) {
