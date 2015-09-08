@@ -190,6 +190,42 @@ function ex006(newReleases) {
 }
 ```
 
+Notice that, like `map`, **every `filter` operation shares some
+operations in common**:
+
+1. Traverse the array
+2. Add objects that pass the test to a new array
+
+Why not abstract away how these operations are carried out ?
+
+*Exercise 7: Implement `filter`*
+
+To make filtering easier, let's add a `filter` function to the Array
+type. The `filter` function accepts a _predicate_. A predicate is a
+function that accepts an item in the array, and returns a boolean
+indicating whether the item should be retained in the new array.
+
+```javascript
+// Let's pretend this function is a method of Array.prototype
+function ex007(predicateFunction) {
+  var results = [];
+
+  this.forEach(function (itemInArray) {
+    // ------------ INSERT CODE HERE! ----------------------------
+    // Apply the predicateFunction to each item in the array.
+    // If the result is truthy, add the item to the results array.
+    // Note: remember you can add items to the array using the array's
+    // push() method.
+    // ------------ INSERT CODE HERE! ----------------------------
+  });
+
+  return results;
+};
+```
+
+Like `map`, `filter` lets us express _what_ data we want without
+requiring us to specify _how_ we want to collect the data.
+
 *Please don't pay attention to the following code:*
 
 ```javascript
@@ -199,6 +235,7 @@ module.exports = {
   '003': ex003,
   '004': ex004,
   '005': ex005,
-  '006': ex006
+  '006': ex006,
+  '007': ex007,
 };
 ```

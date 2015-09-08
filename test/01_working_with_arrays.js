@@ -29,6 +29,16 @@ function deepEqualTest(id) {
   };
 }
 
+function callAsMethod(id) {
+  return function () {
+    var d = data(id);
+    var solution = solutions(id).call(d.array, d.func);
+    var exercise = exercises(id).call(d.array, d.func);
+
+    expect(exercise).to.deep.equal(solution);
+  }
+}
+
 describe('Working with arrays:', function () {
 
   describe('Exercise 1', function () {
@@ -44,22 +54,18 @@ describe('Working with arrays:', function () {
   });
 
   describe('Exercise 4', function () {
-    it('should implement map()', function () {
-      var array = [1,2,3,4,5];
-      var projection = function (item) { return item * 10 };
-
-      var solution = solutions('004').call(array, projection);
-      var exercise = exercises('004').call(array, projection);
-
-      expect(exercise).to.deep.equal(solution);
-    });
+    it('should implement `map`', callAsMethod('004'));
   });
 
   describe('Exercise 5', function () {
-    it('should use map() to project an array of videos into an array of { id, title } pairs', deepEqualTest('005'));
+    it('should use `map` to project an array of videos into an array of { id, title } pairs', deepEqualTest('005'));
   });
 
   describe('Exercise 6', function () {
     it('should use `forEach` to collect only those videos with a rating of 5.0', deepEqualTest('006'));
+  });
+
+  describe('Exercise 7', function () {
+    it('should implement `filter`', callAsMethod('007'));
   });
 });

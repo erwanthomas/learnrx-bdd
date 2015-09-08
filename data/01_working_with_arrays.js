@@ -2,6 +2,11 @@
 
 var names = ['Ben', 'Jafar', 'Matt', 'Priya', 'Brian'];
 
+var map = {
+  array: [1, 2, 3, 4, 5],
+  func: function (item) { return item * 10; }
+};
+
 var newReleases = [
   {
     "id":70111470,
@@ -47,11 +52,17 @@ var newReleases = [
   }
 ];
 
+var filter = {
+  array: [1, 2, 3, 4, 5],
+  func: function (item) { return item > 3; }
+};
+
 module.exports = {
   '001': names,
   '002': names,
   '003': newReleases,
-  '004': null,
+  '004': map,
   '005': newReleases,
   '006': newReleases,
+  '007': filter,
 };

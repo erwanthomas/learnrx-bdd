@@ -56,6 +56,18 @@ function sol006(newReleases) {
   return videos;
 }
 
+function sol007(predicateFunction) {
+  var results = [];
+
+  this.forEach(function (itemInArray) {
+    if (predicateFunction(itemInArray)) {
+      results.push(itemInArray);
+    }
+  });
+
+  return results;
+}
+
 module.exports = {
   '001': sol001,
   '002': sol002,
@@ -63,4 +75,5 @@ module.exports = {
   '004': sol004,
   '005': sol005,
   '006': sol006,
+  '007': sol007,
 };
