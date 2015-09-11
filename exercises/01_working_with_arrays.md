@@ -220,7 +220,7 @@ function ex007(predicateFunction) {
   });
 
   return results;
-};
+}
 ```
 
 Like `map`, `filter` lets us express _what_ data we want without
