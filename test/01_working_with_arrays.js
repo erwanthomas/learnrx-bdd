@@ -68,4 +68,16 @@ describe('Working with arrays:', function () {
   describe('Exercise 7', function () {
     it('should implement `filter`', callAsMethod('007'));
   });
+
+  describe('Exercise 8', function () {
+    it('should chain `filter` and `map` to collect the ids of videos that have a rating of 5.0', deepEqualTest('008'));
+  });
+
+  describe('Exercise 9', function () {
+    it('should flatten the `movieLists` array into an array of video ids', deepEqualTest('009'));
+  });
+
+  describe('Exercise 10', function () {
+    it('should implement `concatAll`', callAsMethod('010'));
+  });
 });

@@ -226,6 +226,143 @@ function ex007(predicateFunction) {
 Like `map`, `filter` lets us express _what_ data we want without
 requiring us to specify _how_ we want to collect the data.
 
+## Query Data by Chaining Method Calls
+
+*Exercise 8: Chain filter and map to collect the ids of videos that have
+a rating of 5.0*
+
+```javascript
+function ex008(newReleases) {
+  // ------------ INSERT CODE HERE! -----------------------------------
+  // Chain the filter and map functions to select the id of all videos
+  // with a rating of 5.0.
+
+  return newReleases // Complete this expression
+  // ------------ INSERT CODE HERE! -----------------------------------
+}
+```
+
+Chaining together `map` and `filter` gives us a lot of expressive power.
+THese high level functions let us express _what_ data we want, but leave
+the underlying libraries a great deal of flexibility in terms of _how_
+our queries are executed.
+
+## Querying Trees
+
+Sometimes, in addition to flat arrays, we need to query trees. Trees
+pose a challenge because we need to flatten them into arrays in order to
+apply `filter` and `map` operations on them. In this section we'll
+define a `concatAll` function that we can combine with `map` and
+`filter` to query trees.
+
+*Exercise 9: Flatten the `movieLists` array into an array of video ids*
+
+```json
+[
+  {
+    name: "New Releases",
+    videos: [
+      {
+        "id": 70111470,
+        "title": "Die Hard",
+        "boxart": "http://cdn-0.nflximg.com/images/2891/DieHard.jpg",
+        "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+        "rating": 4.0,
+        "bookmark": []
+      },
+      {
+        "id": 654356453,
+        "title": "Bad Boys",
+        "boxart": "http://cdn-0.nflximg.com/images/2891/BadBoys.jpg",
+        "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+        "rating": 5.0,
+        "bookmark": [
+          {
+            id: 432534,
+            time: 65876586
+          }
+        ]
+      }
+    ]
+  },
+  {
+    name: "Dramas",
+    videos: [
+      {
+        "id": 65432445,
+        "title": "The Chamber",
+        "boxart": "http://cdn-0.nflximg.com/images/2891/TheChamber.jpg",
+        "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+        "rating": 4.0,
+        "bookmark": []
+      },
+      {
+        "id": 675465,
+        "title": "Fracture",
+        "boxart": "http://cdn-0.nflximg.com/images/2891/Fracture.jpg",
+        "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+        "rating": 5.0,
+        "bookmark": [
+          {
+            id: 432534,
+            time: 65876586
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+
+Let's start by using two nested `forEach` loops to collect the id of
+every video in the two-dimensional `movieLists` array.
+
+```javascript
+function ex009(movieLists) {
+  var allVideoIdsInMovieLists = [];
+
+  // ------------   INSERT CODE HERE!  -----------------------------------
+  // Use two nested forEach loops to flatten the movieLists into a list of
+  // video ids.
+  // ------------   INSERT CODE HERE!  -----------------------------------
+
+  return allVideoIdsInMovieLists;
+}
+```
+
+Flattening trees with nested `forEach` expressions is easy because we
+can explicitly add items to the array. Unfortunately it's _exactly_ this
+type of low-level operation we've been trying to abstract away with
+functions like `map` and `filter`. Can we define a function that's
+abstract enough to express our _intent_ to flatten a tree, without
+specifying too much information about _how_ to carry out the operation ?
+
+*Exercise 10: Implement `concatAll`*
+
+Let's add a `concatAll` function to the `Array` type. The `concatAll`
+function iterates over each sub-array in the array and collects the
+results in a new, flat array. Notice that **the `concatAll` function
+expects each item in the arrray to be another array**.
+
+```javascript
+// Let's pretend this function is a method of Array.prototype
+function ex010() {
+  var results = [];
+
+  this.forEach(function (subArray) {
+    // ------------ INSERT CODE HERE! ----------------------------
+    // Add all the items in each subArray to the results array.
+    // ------------ INSERT CODE HERE! ----------------------------
+  });
+
+  return results;
+}
+```
+
+`concatAll` is a very simple function, so much so that it may not be
+obvious yet how it can be combined with `map` to query a tree. Let's try
+an example...
+
 *Please don't pay attention to the following code:*
 
 ```javascript
@@ -237,5 +374,8 @@ module.exports = {
   '005': ex005,
   '006': ex006,
   '007': ex007,
+  '008': ex008,
+  '009': ex009,
+  '010': ex010,
 };
 ```

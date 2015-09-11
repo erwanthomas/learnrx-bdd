@@ -68,6 +68,38 @@ function sol007(predicateFunction) {
   return results;
 }
 
+function sol008(newReleases) {
+  return newReleases
+    .filter(function (video) {
+      return video.rating === 5.0;
+    })
+    .map(function (video) {
+      return video.id;
+    });
+}
+
+function sol009(movieLists) {
+  var allVideoIdsInMovieLists = [];
+
+  movieLists.forEach(function (movieList) {
+    movieList.videos.forEach(function (video) {
+      allVideoIdsInMovieLists.push(video.id);
+    });
+  });
+
+  return allVideoIdsInMovieLists;
+}
+
+function sol010() {
+  var results = [];
+
+  this.forEach(function (subArray) {
+    results.push.apply(results, subArray);
+  });
+
+  return results;
+}
+
 module.exports = {
   '001': sol001,
   '002': sol002,
@@ -76,4 +108,7 @@ module.exports = {
   '005': sol005,
   '006': sol006,
   '007': sol007,
+  '008': sol008,
+  '009': sol009,
+  '010': sol010,
 };
