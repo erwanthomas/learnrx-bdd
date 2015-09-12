@@ -100,6 +100,17 @@ function sol010() {
   return results;
 }
 
+function sol011(movieLists) {
+  return movieLists
+    .map(function (movieList) {
+      return movieList.videos
+        .map(function (video) {
+          return video.id;
+        });
+    })
+    .concatAll();
+}
+
 module.exports = {
   '001': sol001,
   '002': sol002,
@@ -111,4 +122,5 @@ module.exports = {
   '008': sol008,
   '009': sol009,
   '010': sol010,
+  '011': sol011,
 };

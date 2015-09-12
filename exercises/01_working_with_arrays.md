@@ -363,6 +363,21 @@ function ex010() {
 obvious yet how it can be combined with `map` to query a tree. Let's try
 an example...
 
+*Exercise 11: Use `map` and `concatAll` to project and flatten the
+movieLists into an array of video ids*
+
+Hint: use two nested calls to `map` and one call to `concatAll`.
+
+```javascript
+function ex011(movieLists) {
+  // ------------   INSERT CODE HERE!  -----------------------------------
+  // Use map and concatAll to flatten the movieLists in a list of video ids.
+  // ------------   INSERT CODE HERE!  -----------------------------------
+
+  return movieLists // Complete this expression!
+}
+```
+
 *Please don't pay attention to the following code:*
 
 ```javascript
@@ -377,5 +392,6 @@ module.exports = {
   '008': ex008,
   '009': ex009,
   '010': ex010,
+  '011': ex011,
 };
 ```

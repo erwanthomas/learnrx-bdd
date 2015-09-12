@@ -39,6 +39,36 @@ function callAsMethod(id) {
   }
 }
 
+function safeExtend(obj, propName, prop) {
+  var noop = false;
+
+  if (obj[propName]) {
+    noop = true;
+  } else {
+    obj[propName] = prop;
+  }
+
+  return function () {
+    var isDeleted;
+
+    if (noop) {
+      return;
+    }
+
+    try {
+      isDeleted = (delete obj[propName]);
+    } finally {
+      if (!isDeleted) {
+        obj[propName] = undefined;
+      }
+    }
+  };
+}
+
+function concatAllifyArrays() {
+  return safeExtend(Array.prototype, 'concatAll', solutions('010'));
+}
+
 describe('Working with arrays:', function () {
 
   describe('Exercise 1', function () {
@@ -80,4 +110,11 @@ describe('Working with arrays:', function () {
   describe('Exercise 10', function () {
     it('should implement `concatAll`', callAsMethod('010'));
   });
+
+  describe('Exercise 11', function () {
+    it('should use `map` and `concatAll` to flatten `movieLists` into an array of video ids', function () {
+      var clean = concatAllifyArrays(); deepEqualTest('011'); clean();
+    });
+  });
+
 });

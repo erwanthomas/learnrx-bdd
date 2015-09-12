@@ -131,4 +131,5 @@ module.exports = {
   '008': newReleases,
   '009': movieLists,
   '010': concatAll,
+  '011': movieLists,
 };
