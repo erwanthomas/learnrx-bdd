@@ -111,6 +111,56 @@ function sol011(movieLists) {
     .concatAll();
 }
 
+function sol012(movieLists) {
+  return movieLists
+    .map(function (movieList) {
+      return movieList.videos
+        .map(function (video) {
+          return video.boxarts
+            .filter(function (boxart) {
+              return boxart.width === 150 && boxart.height === 200;
+            })
+            .map(function (boxart) {
+              return {
+                id: video.id,
+                title: video.title,
+                boxart: boxart.url
+              };
+            });
+        })
+        .concatAll();
+    })
+    .concatAll();
+}
+
+function sol013(projection) {
+  return this
+    .map(function (item) {
+      return projection(item);
+    })
+    .concatAll();
+}
+
+function sol014(movieLists) {
+  return movieLists
+    .concatMap(function (movieList) {
+      return movieList.videos
+        .concatMap(function (video) {
+          return video.boxarts
+            .filter(function (boxart) {
+              return boxart.width === 150 && boxart.height === 200;
+            })
+            .map(function (boxart) {
+              return {
+                id: video.id,
+                title: video.title,
+                boxart: boxart.url
+              };
+            });
+        });
+    });
+}
+
 module.exports = {
   '001': sol001,
   '002': sol002,
@@ -123,4 +173,7 @@ module.exports = {
   '009': sol009,
   '010': sol010,
   '011': sol011,
+  '012': sol012,
+  '013': sol013,
+  '014': sol014,
 };

@@ -65,8 +65,15 @@ function safeExtend(obj, propName, prop) {
   };
 }
 
-function concatAllifyArrays() {
-  return safeExtend(Array.prototype, 'concatAll', solutions('010'));
+function safeExtendArrays() {
+  return [
+    safeExtend(Array.prototype, 'concatAll', solutions('010')),
+    safeExtend(Array.prototype, 'concatMap', solutions('013')),
+  ];
+}
+
+function invokeAll(funcArray) {
+  funcArray.forEach(function (func) { func(); });
 }
 
 describe('Working with arrays:', function () {
@@ -113,8 +120,25 @@ describe('Working with arrays:', function () {
 
   describe('Exercise 11', function () {
     it('should use `map` and `concatAll` to flatten `movieLists` into an array of video ids', function () {
-      var clean = concatAllifyArrays(); deepEqualTest('011'); clean();
+      var cleaners = safeExtendArrays(); deepEqualTest('011'); invokeAll(cleaners);
     });
   });
 
+  describe('Exercise 12', function () {
+    it('should retrieve id, title, and a 150x200 box art url for every video', function () {
+      var cleaners = safeExtendArrays(); deepEqualTest('012'); invokeAll(cleaners);
+    });
+  });
+
+  describe('Exercise 13', function () {
+    it('should implement `concatMap`', function () {
+      var cleaners = safeExtendArrays(); callAsMethod('013'); invokeAll(cleaners);
+    });
+  });
+
+  describe('Exercise 14', function () {
+    it('should retrieve id, title, and a 150x200 box art url for every video', function () {
+      var cleaners = safeExtendArrays(); deepEqualTest('014'); invokeAll(cleaners);
+    });
+  });
 });
