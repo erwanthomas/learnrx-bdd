@@ -561,6 +561,163 @@ maximum size. If the boxart is smaller than the maximum size, we discard
 it. If it's larger, we keep track of it. Finally we're left with a
 single boxart which must necessarily be the largest.
 
+```json
+[
+  { "width": 200, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/Fracture200.jpg" },
+  { "width": 150, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/Fracture150.jpg" },
+  { "width": 300, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/Fracture300.jpg" },
+  { "width": 425, "height": 150, "url": "http://cdn-0.nflximg.com/images/2891/Fracture425.jpg" }
+]
+```
+
+```javascript
+function ex015(boxarts) {
+  var currentSize, maxSize, largestBoxart;
+
+  maxSize = -1;
+
+  boxarts.forEach(function (boxart) {
+    currentSize = boxart.width * boxart.height;
+    if (currentSize > maxSize) {
+      largestBoxart = boxart;
+      maxSize = currentSize;
+    }
+  });
+
+  return largestBoxart;
+}
+```
+
+This process is a reduction because we're using the information we
+derived from the last computation to calculate the current value.
+Wouldn't it be nice if we could just specify what operation we wanted to
+perform on the last and current value ? Let's create a helper function
+to perform reductions on arrays.
+
+*Exercise 16: Implement `reduce`*
+
+Let's add a `reduce` function to the `Array` type.
+
+```javascript
+// Let's pretend this function is a method of Array.prototype.
+function ex016(combiner, initialValue) {
+  var counter, accumulatedValue;
+
+  // If the array is empty, do nothing and return itself.
+  if (this.length === 0) {
+    return this;
+  }
+
+  switch (arguments.length) {
+    case 0: throw new TypeError('Invalid arguments for Array#reduce');
+
+    // If the user didn't pass an initial value, use the first item.
+    case 1:  counter = 1; accumulatedValue = this[0]; break;
+
+    // Else use initial value as first item.
+    default: counter = 0; accumulatedValue = initialValue;
+  }
+
+  for (; counter < this.length; counter += 1) {
+    accumulatedValue = combiner(accumulatedValue, this[counter]);
+  }
+
+  // Contrary to all ECMAScript specifications, our implementation always
+  // wraps the last accumulated value in an array before returning it.
+  return [accumulatedValue];
+}
+
+```
+
+*Exercise 17: Retrieve the largest rating*
+
+Let's use our new `reduce` function to isolate the largest value in an
+array of ratings.
+
+```json
+[ 2, 3, 1, 4, 5 ]
+```
+
+```javascript
+function ex017(ratings) {
+  // You should return an array containing only the largest rating.
+  // Remember that `reduce` always returns an array with one item.
+  return ratings.reduce // complete this expression
+}
+```
+
+Nice work. Now let's try combining `reduce` with our other functions to
+build more complex queries.
+
+*Exercise 18: Retrieve url of the largest boxart*
+
+Let's try combining `reduce` with `map` to reduce multiple boxart
+objects to a single value : the url of the largest box art.
+
+```javascript
+function ex018(boxarts) {
+  return boxarts.reduce // Complete this expression
+}
+```
+
+*Exercise 19: Reducing with an initial value*
+
+Sometimes when we reduce an array, we want the reduced value to be a
+different type than the items stored in the array. Let's say we have an
+array of videos and we want to reduce them to a single map where the key
+is the video id and the value is the video's title.
+
+```json
+[
+  { "id": 65432445, "title": "The Chamber" },
+  { "id": 675465, "title": "Fracture" },
+  { "id": 70111470, "title": "Die Hard" },
+  { "id": 654356453, "title": "Bad Boys" }
+]
+```
+
+```javascript
+function ex019(videos) {
+  return videos
+    .reduce(function (accumulatedMap, video) {
+
+      // Object.create() makes a fast copy of the accumulatedMap by
+      // creating a new object and setting the accumulatedMap to be the
+      // new object's prototype.
+      // Initially the new object is empty and has no members of its own,
+      // except a pointer to the object on which it was based. If an
+      // attempt to find a member on the new object fails, the new object
+      // silently attempts to find the member on its prototype. This
+      // process continues recursively, with each object checking its
+      // prototype until the member is found or we reach the first object
+      // we created.
+      // If we set a member value on the new object, it is stored
+      // directly on that object, leaving the prototype unchanged.
+      // Object.create() is perfect for functional programming because it
+      // makes creating a new object with a different member value almost
+      // as cheap as changing the member on the original object!
+
+      var copyOfAccumulatedMap = Object.create(accumulatedMap);
+
+      // ----- INSERT CODE TO ADD THE VIDEO TITLE TO THE NEW MAP USING
+      // ----- THE VIDEO ID AS THE KEY
+
+      return copyOfAccumulatedMap;
+    }, {}); // Use an empty map as the initial value instead of the first item in the list.
+}
+```
+
+Nice work. Now let's try combining `reduce` with our other functions to
+build more complex queries.
+
+*Exercise 20: Retrieve the id, title, and _smallest_ box art url for
+every video*
+
+This is a variation of the problem we solved earlier, where we retrieved
+the url of the box art with a width of 150px. This time we'll use
+`reduce` instead of `filter` to retrieve the _smallest_ box art in the
+`boxarts` array.
+
 *Please don't pay attention to the following code:*
 
 ```javascript
@@ -578,5 +735,8 @@ module.exports = {
   '011': ex011,
   '012': ex012,
   '013': ex013,
+  '014': ex014,
+  '015': ex015,
+  '016': ex016,
 };
 ```

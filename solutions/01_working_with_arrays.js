@@ -161,6 +161,67 @@ function sol014(movieLists) {
     });
 }
 
+function sol015(boxarts) {
+  var currentSize, maxSize, largestBoxart;
+
+  maxSize = -1;
+
+  boxarts.forEach(function (boxart) {
+    currentSize = boxart.width * boxart.height;
+    if (currentSize > maxSize) {
+      largestBoxart = boxart;
+      maxSize = currentSize;
+    }
+  });
+
+  return largestBoxart;
+}
+
+function sol016(combiner, initialValue) {
+  var counter, accumulatedValue;
+
+  if (this.length === 0) {
+    return this;
+  }
+
+  switch (arguments.length) {
+    case 0: throw new TypeError('Invalid arguments for Array#reduce');
+    case 1:  counter = 1; accumulatedValue = this[0]; break;
+    default: counter = 0; accumulatedValue = initialValue;
+  }
+
+  for (; counter < this.length; counter += 1) {
+    accumulatedValue = combiner(accumulatedValue, this[counter]);
+  }
+
+  return [accumulatedValue];
+}
+
+function sol017(ratings) {
+  return ratings.reduce(function (acc, cur) {
+    return acc > cur ? acc : cur;
+  });
+}
+
+function sol018(boxarts) {
+  return boxarts
+    .reduce(function (acc, cur) {
+      return (acc.width * acc.height) > (cur.width * cur.height) ? acc : cur;
+    })
+    .map(function (boxart) {
+      return boxart.url;
+    });
+}
+
+function sol019(videos) {
+  return videos
+    .reduce(function (accumulatedMap, video) {
+      var copyOfAccumulatedMap = Object.create(accumulatedMap);
+      copyOfAccumulatedMap[video.id] = video.title;
+      return copyOfAccumulatedMap;
+    }, {});
+}
+
 module.exports = {
   '001': sol001,
   '002': sol002,
@@ -176,4 +237,9 @@ module.exports = {
   '012': sol012,
   '013': sol013,
   '014': sol014,
+  '015': sol015,
+  '016': sol016,
+  '017': sol017,
+  '018': sol018,
+  '019': sol019,
 };

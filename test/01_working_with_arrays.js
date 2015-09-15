@@ -39,10 +39,19 @@ function callAsMethod(id) {
   }
 }
 
-function safeExtend(obj, propName, prop) {
-  var noop = false;
+function isDefined(variable) {
+  return !(typeof variable === 'undefined');
+}
 
-  if (obj[propName]) {
+function extend(obj, propName, prop, unsafe) {
+  var noop = false;
+  var oldProp;
+
+  if (unsafe) {
+    oldProp = obj[propName];
+  }
+
+  if (!unsafe && isDefined(obj[propName])) {
     noop = true;
   } else {
     obj[propName] = prop;
@@ -52,6 +61,11 @@ function safeExtend(obj, propName, prop) {
     var isDeleted;
 
     if (noop) {
+      return;
+    }
+
+    if (unsafe) {
+      obj[propName] = oldProp;
       return;
     }
 
@@ -65,15 +79,22 @@ function safeExtend(obj, propName, prop) {
   };
 }
 
-function safeExtendArrays() {
+function extendArrays() {
   return [
-    safeExtend(Array.prototype, 'concatAll', solutions('010')),
-    safeExtend(Array.prototype, 'concatMap', solutions('013')),
+    extend(Array.prototype, 'concatAll', solutions('010')),
+    extend(Array.prototype, 'concatMap', solutions('013')),
+    extend(Array.prototype, 'reduce', solutions('016'), true),
   ];
 }
 
 function invokeAll(funcArray) {
   funcArray.forEach(function (func) { func(); });
+}
+
+function extendArraysAndCall(test) {
+  return function () {
+    var cleaners = extendArrays(); test(); invokeAll(cleaners);
+  };
 }
 
 describe('Working with arrays:', function () {
@@ -119,26 +140,38 @@ describe('Working with arrays:', function () {
   });
 
   describe('Exercise 11', function () {
-    it('should use `map` and `concatAll` to flatten `movieLists` into an array of video ids', function () {
-      var cleaners = safeExtendArrays(); deepEqualTest('011'); invokeAll(cleaners);
-    });
+    it('should use `map` and `concatAll` to flatten `movieLists` into an array of video ids', extendArraysAndCall(deepEqualTest('011')));
   });
 
   describe('Exercise 12', function () {
-    it('should retrieve id, title, and a 150x200 box art url for every video', function () {
-      var cleaners = safeExtendArrays(); deepEqualTest('012'); invokeAll(cleaners);
-    });
+    it('should retrieve id, title, and a 150x200 box art url for every video', extendArraysAndCall(deepEqualTest('012')));
   });
 
   describe('Exercise 13', function () {
-    it('should implement `concatMap`', function () {
-      var cleaners = safeExtendArrays(); callAsMethod('013'); invokeAll(cleaners);
-    });
+    it('should implement `concatMap`', extendArraysAndCall(callAsMethod('013')));
   });
 
   describe('Exercise 14', function () {
-    it('should retrieve id, title, and a 150x200 box art url for every video', function () {
-      var cleaners = safeExtendArrays(); deepEqualTest('014'); invokeAll(cleaners);
-    });
+    it('should retrieve id, title, and a 150x200 box art url for every video', extendArraysAndCall(deepEqualTest('014')));
+  });
+
+  describe('Exercise 15', function () {
+    it('should use `forEach` to find the largest box art', deepEqualTest('015'));
+  });
+
+  describe('Exercise 16', function () {
+    it('should implement `reduce`', callAsMethod('016'));
+  });
+
+  describe('Exercise 17', function () {
+    it('should retrieve the largest rating', deepEqualTest('017'));
+  });
+
+  describe('Exercise 18', function () {
+    it('should retrieve the url of the largest box art', extendArraysAndCall(deepEqualTest('018')));
+  });
+
+  describe('Exercise 19', function () {
+    it('should reduce using an initial value', extendArraysAndCall(deepEqualTest('019')));
   });
 });

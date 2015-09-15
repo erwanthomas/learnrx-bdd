@@ -189,6 +189,29 @@ var concatMap = {
   }
 };
 
+var boxarts = [
+  { "width": 200, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/Fracture200.jpg" },
+  { "width": 150, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/Fracture150.jpg" },
+  { "width": 300, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/Fracture300.jpg" },
+  { "width": 425, "height": 150, "url": "http://cdn-0.nflximg.com/images/2891/Fracture425.jpg" }
+];
+
+var reduce = {
+  array: [1, 2, 3],
+  func: function (accumulatedValue, currentValue) {
+    return accumulatedValue + currentValue;
+  }
+};
+
+var ratings = [ 2, 3, 1, 4, 5 ];
+
+var videos = [
+  { "id": 65432445, "title": "The Chamber" },
+  { "id": 675465, "title": "Fracture" },
+  { "id": 70111470, "title": "Die Hard" },
+  { "id": 654356453, "title": "Bad Boys" }
+];
+
 module.exports = {
   '001': names,
   '002': names,
@@ -204,4 +227,9 @@ module.exports = {
   '012': movieListsExtended,
   '013': concatMap,
   '014': movieListsExtended,
+  '015': boxarts,
+  '016': reduce,
+  '017': ratings,
+  '018': boxarts,
+  '019': videos,
 };
