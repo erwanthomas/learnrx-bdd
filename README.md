@@ -1,11 +1,12 @@
 # Functional Programming in Javascript
 
 A tutorial about RxJS and functional programming in javascript,
-originally written by Jafar Husain and turned into a BDD test suite by
-me.
+originally written by Jafar Husain and ReactiveX contributors, and
+turned into a BDD test suite based on markdown files by me.
 
-The original tutorial can be found
+The source code of the original tutorial used to be
 [here](https://github.com/jhusain/learnrx).
+It has now moved to [here](https://github.com/ReactiveX/learnrx).
 
 ## How-to
 
