@@ -59,8 +59,8 @@ var filter = {
 
 var movieLists = [
   {
-    name: "New Releases",
-    videos: [
+    "name": "New Releases",
+    "videos": [
       {
         "id": 70111470,
         "title": "Die Hard",
@@ -77,16 +77,16 @@ var movieLists = [
         "rating": 5.0,
         "bookmark": [
           {
-            id: 432534,
-            time: 65876586
+            "id": 432534,
+            "time": 65876586
           }
         ]
       }
     ]
   },
   {
-    name: "Dramas",
-    videos: [
+    "name": "Dramas",
+    "videos": [
       {
         "id": 65432445,
         "title": "The Chamber",
@@ -103,8 +103,8 @@ var movieLists = [
         "rating": 5.0,
         "bookmark": [
           {
-            id: 432534,
-            time: 65876586
+            "id": 432534,
+            "time": 65876586
           }
         ]
       }

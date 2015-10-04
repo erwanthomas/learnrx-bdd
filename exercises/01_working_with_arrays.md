@@ -260,8 +260,8 @@ define a `concatAll` function that we can combine with `map` and
 ```json
 [
   {
-    name: "New Releases",
-    videos: [
+    "name": "New Releases",
+    "videos": [
       {
         "id": 70111470,
         "title": "Die Hard",
@@ -278,16 +278,16 @@ define a `concatAll` function that we can combine with `map` and
         "rating": 5.0,
         "bookmark": [
           {
-            id: 432534,
-            time: 65876586
+            "id": 432534,
+            "time": 65876586
           }
         ]
       }
     ]
   },
   {
-    name: "Dramas",
-    videos: [
+    "name": "Dramas",
+    "videos": [
       {
         "id": 65432445,
         "title": "The Chamber",
@@ -304,8 +304,8 @@ define a `concatAll` function that we can combine with `map` and
         "rating": 5.0,
         "bookmark": [
           {
-            id: 432534,
-            time: 65876586
+            "id": 432534,
+            "time": 65876586
           }
         ]
       }
@@ -738,5 +738,8 @@ module.exports = {
   '014': ex014,
   '015': ex015,
   '016': ex016,
+  '017': ex017,
+  '018': ex018,
+  '019': ex019,
 };
 ```
