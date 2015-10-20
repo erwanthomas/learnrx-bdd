@@ -700,6 +700,13 @@ the url of the box art with a width of 150px. This time we'll use
 `reduce` instead of `filter` to retrieve the _smallest_ box art in the
 `boxarts` array.
 
+```javascript
+function ex020(movieLists) {
+  // complete this expression with one or more concatMap, map and reduce calls !
+  return movieLists
+}
+```
+
 *Please don't pay attention to the following code:*
 
 ```javascript
@@ -723,5 +730,6 @@ module.exports = {
   '017': ex017,
   '018': ex018,
   '019': ex019,
+  '020': ex020,
 };
 ```

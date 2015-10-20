@@ -174,4 +174,8 @@ describe('Working with arrays:', function () {
   describe('Exercise 19', function () {
     it('should reduce using an initial value', extendArraysAndCall(deepEqualTest('019')));
   });
+
+  describe('Exercise 20', function () {
+    it('should retrieve { id, title, smallest box art url } for every video', extendArraysAndCall(deepEqualTest('020')));
+  });
 });

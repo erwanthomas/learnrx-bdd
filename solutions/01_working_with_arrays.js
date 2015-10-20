@@ -221,6 +221,25 @@ function sol019(videos) {
     }, {});
 }
 
+function sol020(movieLists) {
+  // helper (optional)
+  function size(boxart) {
+    return boxart.width * boxart.height;
+  }
+
+  return movieLists.concatMap(function (movieList) {
+    return movieList.videos.concatMap(function (video) {
+      return video.boxarts
+        .reduce(function (smallestBoxart, boxart) {
+          return size(smallestBoxart) < size(boxart) ? smallestBoxart : boxart;
+        })
+        .map(function (boxart) {
+          return { id: video.id, title: video.title, boxart: boxart.url };
+        });
+    });
+  });
+}
+
 module.exports = {
   '001': sol001,
   '002': sol002,
@@ -241,4 +260,5 @@ module.exports = {
   '017': sol017,
   '018': sol018,
   '019': sol019,
+  '020': sol020,
 };

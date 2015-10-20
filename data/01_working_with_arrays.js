@@ -232,4 +232,5 @@ module.exports = {
   '017': ratings,
   '018': boxarts,
   '019': videos,
+  '020': movieListsExtended,
 };
