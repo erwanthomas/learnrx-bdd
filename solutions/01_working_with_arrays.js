@@ -216,9 +216,8 @@ function sol018(boxarts) {
 function sol019(videos) {
   return videos
     .reduce(function (accumulatedMap, video) {
-      var copyOfAccumulatedMap = Object.create(accumulatedMap);
-      copyOfAccumulatedMap[video.id] = video.title;
-      return copyOfAccumulatedMap;
+      accumulatedMap[video.id] = video.title;
+      return accumulatedMap;
     }, {});
 }
 
