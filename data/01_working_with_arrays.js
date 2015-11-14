@@ -3,8 +3,10 @@
 var names = ['Ben', 'Jafar', 'Matt', 'Priya', 'Brian'];
 
 var map = {
-  array: [1, 2, 3, 4, 5],
-  func: function (item) { return item * 10; }
+  thisArg: [1, 2, 3, 4, 5],
+  args: [
+    function (item) { return item * 10; }
+  ]
 };
 
 var newReleases = [
@@ -53,8 +55,10 @@ var newReleases = [
 ];
 
 var filter = {
-  array: [1, 2, 3, 4, 5],
-  func: function (item) { return item > 3; }
+  thisArg: [1, 2, 3, 4, 5],
+  args: [
+    function (item) { return item > 3; }
+  ]
 };
 
 var movieLists = [
@@ -113,7 +117,7 @@ var movieLists = [
 ];
 
 var concatAll = {
-  array: [
+  thisArg: [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9],
@@ -179,14 +183,16 @@ var movieListsExtended = [
 ];
 
 var concatMap = {
-  array: [0, 1, 2],
-  func: function (index) {
-    return [
-      ['cero','zéro','zero'],
-      ['uno','un','one'],
-      ['dos','deux','two']
-    ][index];
-  }
+  thisArg: [0, 1, 2],
+  args: [
+    function (index) {
+      return [
+        ['cero','zéro','zero'],
+        ['uno','un','one'],
+        ['dos','deux','two']
+      ][index];
+    }
+  ]
 };
 
 var boxarts = [
@@ -197,10 +203,12 @@ var boxarts = [
 ];
 
 var reduce = {
-  array: [1, 2, 3],
-  func: function (accumulatedValue, currentValue) {
-    return accumulatedValue + currentValue;
-  }
+  thisArg: [1, 2, 3],
+  args: [
+    function (accumulatedValue, currentValue) {
+      return accumulatedValue + currentValue;
+    }
+  ]
 };
 
 var ratings = [ 2, 3, 1, 4, 5 ];
@@ -211,6 +219,54 @@ var videos = [
   { "id": 70111470, "title": "Die Hard" },
   { "id": 654356453, "title": "Bad Boys" }
 ];
+
+var videosAndBookmarks = {
+  "videos": [
+    {
+      "id": 70111470,
+      "title": "Die Hard",
+      "boxart": "http://cdn-0.nflximg.com/images/2891/DieHard.jpg",
+      "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+      "rating": 4.0,
+    },
+    {
+      "id": 654356453,
+      "title": "Bad Boys",
+      "boxart": "http://cdn-0.nflximg.com/images/2891/BadBoys.jpg",
+      "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+      "rating": 5.0,
+    },
+    {
+      "id": 65432445,
+      "title": "The Chamber",
+      "boxart": "http://cdn-0.nflximg.com/images/2891/TheChamber.jpg",
+      "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+      "rating": 4.0,
+    },
+    {
+      "id": 675465,
+      "title": "Fracture",
+      "boxart": "http://cdn-0.nflximg.com/images/2891/Fracture.jpg",
+      "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+      "rating": 5.0,
+    }
+  ],
+
+  "bookmarks": [
+    { "id": 470, "time": 23432 },
+    { "id": 453, "time": 234324 },
+    { "id": 445, "time": 987834 }
+  ]
+};
+
+var zip = {
+  thisArg: null,
+  args: [
+    [1, 2, 3],
+    [4, 5, 6],
+    function (left, right) { return left + right; }
+  ]
+};
 
 module.exports = {
   '001': names,
@@ -233,4 +289,7 @@ module.exports = {
   '018': boxarts,
   '019': videos,
   '020': movieListsExtended,
+  '021': videosAndBookmarks,
+  '022': zip,
+  '023': videosAndBookmarks,
 };

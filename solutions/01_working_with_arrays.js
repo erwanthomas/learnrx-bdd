@@ -240,6 +240,47 @@ function sol020(movieLists) {
   });
 }
 
+function sol021(videosAndBookmarks) {
+  var videos = videosAndBookmarks.videos;
+  var bookmarks = videosAndBookmarks.bookmarks;
+  var counter, pairsLength;
+
+  var videoIdAndBookmarkIdPairs = [];
+
+  counter = 0;
+  pairsLength = Math.min(videos.length, bookmarks.length);
+
+  for (; counter < pairsLength; counter += 1) {
+    videoIdAndBookmarkIdPairs.push({
+      videoId: videos[counter].id,
+      bookmarkId: bookmarks[counter].id,
+    });
+  }
+
+  return videoIdAndBookmarkIdPairs;
+}
+
+function sol022(left, right, combinerFunction) {
+  var results = [];
+  var counter = 0;
+  var zipLength = Math.min(left.length, right.length);
+
+  for (; counter < zipLength; counter += 1) {
+    results.push(combinerFunction(left[counter], right[counter]));
+  }
+
+  return results;
+}
+
+function sol023(videosAndBookmarks) {
+  var videos = videosAndBookmarks.videos;
+  var bookmarks = videosAndBookmarks.bookmarks;
+
+  return Array.zip(videos, bookmarks, function (video, bookmark) {
+    return { videoId: video.id, bookmarkId: bookmark.id };
+  });
+}
+
 module.exports = {
   '001': sol001,
   '002': sol002,
@@ -261,4 +302,7 @@ module.exports = {
   '018': sol018,
   '019': sol019,
   '020': sol020,
+  '021': sol021,
+  '022': sol022,
+  '023': sol023,
 };

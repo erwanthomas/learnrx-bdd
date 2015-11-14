@@ -1,8 +1,11 @@
-var expect    = require('chai').expect;
+var chai      = require('chai');
+var expect    = chai.expect;
 var data      = require('../data/all');
 var solutions = require('../solutions/all');
 var exercises = require('../exercises/all');
 var Pconsole  = require('../utils/pconsole');
+
+chai.config.showDiff = false;
 
 function consoleTest(id) {
   return function () {
@@ -29,11 +32,11 @@ function deepEqualTest(id) {
   };
 }
 
-function callAsMethod(id) {
+function boundCall(id) {
   return function () {
     var d = data(id);
-    var solution = solutions(id).call(d.array, d.func);
-    var exercise = exercises(id).call(d.array, d.func);
+    var solution = solutions(id).apply(d.thisArg, d.args);
+    var exercise = exercises(id).apply(d.thisArg, d.args);
 
     expect(exercise).to.deep.equal(solution);
   }
@@ -84,6 +87,7 @@ function extendArrays() {
     extend(Array.prototype, 'concatAll', solutions('010')),
     extend(Array.prototype, 'concatMap', solutions('013')),
     extend(Array.prototype, 'reduce', solutions('016'), true),
+    extend(Array, 'zip', solutions('022')),
   ];
 }
 
@@ -112,7 +116,7 @@ describe('Working with arrays:', function () {
   });
 
   describe('Exercise 4', function () {
-    it('should implement `map`', callAsMethod('004'));
+    it('should implement `map`', boundCall('004'));
   });
 
   describe('Exercise 5', function () {
@@ -124,7 +128,7 @@ describe('Working with arrays:', function () {
   });
 
   describe('Exercise 7', function () {
-    it('should implement `filter`', callAsMethod('007'));
+    it('should implement `filter`', boundCall('007'));
   });
 
   describe('Exercise 8', function () {
@@ -136,7 +140,7 @@ describe('Working with arrays:', function () {
   });
 
   describe('Exercise 10', function () {
-    it('should implement `concatAll`', callAsMethod('010'));
+    it('should implement `concatAll`', boundCall('010'));
   });
 
   describe('Exercise 11', function () {
@@ -148,7 +152,7 @@ describe('Working with arrays:', function () {
   });
 
   describe('Exercise 13', function () {
-    it('should implement `concatMap`', extendArraysAndCall(callAsMethod('013')));
+    it('should implement `concatMap`', extendArraysAndCall(boundCall('013')));
   });
 
   describe('Exercise 14', function () {
@@ -160,7 +164,7 @@ describe('Working with arrays:', function () {
   });
 
   describe('Exercise 16', function () {
-    it('should implement `reduce`', callAsMethod('016'));
+    it('should implement `reduce`', boundCall('016'));
   });
 
   describe('Exercise 17', function () {
@@ -177,5 +181,17 @@ describe('Working with arrays:', function () {
 
   describe('Exercise 20', function () {
     it('should retrieve { id, title, smallest box art url } for every video', extendArraysAndCall(deepEqualTest('020')));
+  });
+
+  describe('Exercise 21', function () {
+    it('should combine videos and bookmarks by index', extendArraysAndCall(deepEqualTest('021')));
+  });
+
+  describe('Exercise 22', function () {
+    it('should implement `zip`', extendArraysAndCall(boundCall('022')));
+  });
+
+  describe('Exercise 23', function () {
+    it('should combine videos and bookmarks by index', extendArraysAndCall(deepEqualTest('023')));
   });
 });

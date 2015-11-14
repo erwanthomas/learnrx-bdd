@@ -248,6 +248,24 @@ function ex021(videos, bookmarks) {
   return videoIdAndBookmarkIdPairs;
 }
 
+function ex022(left, right, combinerFunction) {
+  var counter, results = [];
+
+  for (counter = 0; counter < Math.min(left.length, right.length); counter++) {
+    results.push(combinerFunction(left[counter],right[counter]));
+  }
+
+  return results;
+}
+
+function ex023(videosAndBookmarks) {
+  var videos = videosAndBookmarks.videos;
+  var bookmarks = videosAndBookmarks.bookmarks;
+  return Array.zip(videos, bookmarks, function (video, bookmark) {
+    return {videoId: video.id, bookmarkId: bookmark.id};
+  });
+}
+
 module.exports = {
   '001': ex001,
   '002': ex002,
@@ -270,4 +288,6 @@ module.exports = {
   '019': ex019,
   '020': ex020,
   '021': ex021,
+  '022': ex022,
+  '023': ex023,
 };
