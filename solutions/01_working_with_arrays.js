@@ -240,9 +240,7 @@ function sol020(movieLists) {
   });
 }
 
-function sol021(videosAndBookmarks) {
-  var videos = videosAndBookmarks.videos;
-  var bookmarks = videosAndBookmarks.bookmarks;
+function sol021(videos, bookmarks) {
   var counter, pairsLength;
 
   var videoIdAndBookmarkIdPairs = [];
@@ -272,10 +270,7 @@ function sol022(left, right, combinerFunction) {
   return results;
 }
 
-function sol023(videosAndBookmarks) {
-  var videos = videosAndBookmarks.videos;
-  var bookmarks = videosAndBookmarks.bookmarks;
-
+function sol023(videos, bookmarks) {
   return Array.zip(videos, bookmarks, function (video, bookmark) {
     return { videoId: video.id, bookmarkId: bookmark.id };
   });

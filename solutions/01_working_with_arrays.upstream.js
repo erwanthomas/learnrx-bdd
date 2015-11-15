@@ -258,9 +258,7 @@ function ex022(left, right, combinerFunction) {
   return results;
 }
 
-function ex023(videosAndBookmarks) {
-  var videos = videosAndBookmarks.videos;
-  var bookmarks = videosAndBookmarks.bookmarks;
+function ex023(videos, bookmarks) {
   return Array.zip(videos, bookmarks, function (video, bookmark) {
     return {videoId: video.id, bookmarkId: bookmark.id};
   });

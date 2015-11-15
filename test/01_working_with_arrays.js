@@ -1,11 +1,8 @@
-var chai      = require('chai');
-var expect    = chai.expect;
+var expect    = require('chai').expect;
 var data      = require('../data/all');
 var solutions = require('../solutions/all');
 var exercises = require('../exercises/all');
 var Pconsole  = require('../utils/pconsole');
-
-chai.config.showDiff = false;
 
 function consoleTest(id) {
   return function () {
@@ -23,27 +20,55 @@ function consoleTest(id) {
   };
 }
 
-function deepEqualTest(id) {
-  return function () {
-    var solution = solutions(id)(data(id));
-    var exercise = exercises(id)(data(id));
+function exists(value) {
+  return (typeof value) !== 'undefined';
+}
 
-    expect(exercise).to.deep.equal(solution);
+function toArray(arrayLike) {
+  return Array.prototype.slice.call(arrayLike);
+}
+
+function pick() {
+  var obj, args, result;
+
+  result = {};
+  args = toArray(arguments);
+  obj = args.shift();
+
+  if (!exists(obj) || obj === null) {
+    return result;
+  }
+
+  args.forEach(function (prop) {
+    if (exists(obj[prop])) {
+      result[prop] = obj[prop];
+    }
+  });
+
+  return result;
+}
+
+function fetchTestData(id) {
+  var input = data(id);
+  var inputs = pick(input, 'thisArg', 'args');
+
+  return {
+    exercise: exercises(id),
+    solution: solutions(id),
+    thisArg: inputs.thisArg || null,
+    args: inputs.args || [ input ]
   };
 }
 
-function boundCall(id) {
+function deepEqualTest(id) {
   return function () {
-    var d = data(id);
-    var solution = solutions(id).apply(d.thisArg, d.args);
-    var exercise = exercises(id).apply(d.thisArg, d.args);
+    var t = fetchTestData(id);
 
-    expect(exercise).to.deep.equal(solution);
-  }
-}
+    var obtained = t.exercise.apply(t.thisArg, t.args);
+    var expected = t.solution.apply(t.thisArg, t.args);
 
-function isDefined(variable) {
-  return !(typeof variable === 'undefined');
+    expect(obtained).to.deep.equal(expected);
+  };
 }
 
 function extend(obj, propName, prop, unsafe) {
@@ -54,7 +79,7 @@ function extend(obj, propName, prop, unsafe) {
     oldProp = obj[propName];
   }
 
-  if (!unsafe && isDefined(obj[propName])) {
+  if (!unsafe && exists(obj[propName])) {
     noop = true;
   } else {
     obj[propName] = prop;
@@ -116,7 +141,7 @@ describe('Working with arrays:', function () {
   });
 
   describe('Exercise 4', function () {
-    it('should implement `map`', boundCall('004'));
+    it('should implement `map`', deepEqualTest('004'));
   });
 
   describe('Exercise 5', function () {
@@ -128,7 +153,7 @@ describe('Working with arrays:', function () {
   });
 
   describe('Exercise 7', function () {
-    it('should implement `filter`', boundCall('007'));
+    it('should implement `filter`', deepEqualTest('007'));
   });
 
   describe('Exercise 8', function () {
@@ -140,7 +165,7 @@ describe('Working with arrays:', function () {
   });
 
   describe('Exercise 10', function () {
-    it('should implement `concatAll`', boundCall('010'));
+    it('should implement `concatAll`', deepEqualTest('010'));
   });
 
   describe('Exercise 11', function () {
@@ -152,7 +177,7 @@ describe('Working with arrays:', function () {
   });
 
   describe('Exercise 13', function () {
-    it('should implement `concatMap`', extendArraysAndCall(boundCall('013')));
+    it('should implement `concatMap`', extendArraysAndCall(deepEqualTest('013')));
   });
 
   describe('Exercise 14', function () {
@@ -164,7 +189,7 @@ describe('Working with arrays:', function () {
   });
 
   describe('Exercise 16', function () {
-    it('should implement `reduce`', boundCall('016'));
+    it('should implement `reduce`', deepEqualTest('016'));
   });
 
   describe('Exercise 17', function () {
@@ -188,7 +213,7 @@ describe('Working with arrays:', function () {
   });
 
   describe('Exercise 22', function () {
-    it('should implement `zip`', extendArraysAndCall(boundCall('022')));
+    it('should implement `zip`', extendArraysAndCall(deepEqualTest('022')));
   });
 
   describe('Exercise 23', function () {

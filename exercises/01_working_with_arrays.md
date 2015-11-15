@@ -716,56 +716,57 @@ how the zip operation works.
 
 *Exercice 21: Combine videos and bookmarks by index*
 
-Use a `for` loop to traverse the videos and bookmarks array at the same
+Use a `for` loop to traverse the videos and bookmarks arrays at the same
 time. For each video and bookmark pair, create a `{ videoId, bookmarkId
 }` pair and add it to the `videoIdAndBookmarkIdPairs` array.
 
+- videos:
 
 ```json
-{
-  "videos": [
-    {
-      "id": 70111470,
-      "title": "Die Hard",
-      "boxart": "http://cdn-0.nflximg.com/images/2891/DieHard.jpg",
-      "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
-      "rating": 4.0,
-    },
-    {
-      "id": 654356453,
-      "title": "Bad Boys",
-      "boxart": "http://cdn-0.nflximg.com/images/2891/BadBoys.jpg",
-      "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
-      "rating": 5.0,
-    },
-    {
-      "id": 65432445,
-      "title": "The Chamber",
-      "boxart": "http://cdn-0.nflximg.com/images/2891/TheChamber.jpg",
-      "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
-      "rating": 4.0,
-    },
-    {
-      "id": 675465,
-      "title": "Fracture",
-      "boxart": "http://cdn-0.nflximg.com/images/2891/Fracture.jpg",
-      "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
-      "rating": 5.0,
-    }
-  ],
+[
+  {
+    "id": 70111470,
+    "title": "Die Hard",
+    "boxart": "http://cdn-0.nflximg.com/images/2891/DieHard.jpg",
+    "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+    "rating": 4.0,
+  },
+  {
+    "id": 654356453,
+    "title": "Bad Boys",
+    "boxart": "http://cdn-0.nflximg.com/images/2891/BadBoys.jpg",
+    "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+    "rating": 5.0,
+  },
+  {
+    "id": 65432445,
+    "title": "The Chamber",
+    "boxart": "http://cdn-0.nflximg.com/images/2891/TheChamber.jpg",
+    "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+    "rating": 4.0,
+  },
+  {
+    "id": 675465,
+    "title": "Fracture",
+    "boxart": "http://cdn-0.nflximg.com/images/2891/Fracture.jpg",
+    "uri": "http://api.netflix.com/catalog/titles/movies/70111470",
+    "rating": 5.0,
+  }
+]
+```
 
-  "bookmarks": [
-    { "id": 470, "time": 23432 },
-    { "id": 453, "time": 234324 },
-    { "id": 445, "time": 987834 }
-  ]
-}
+- bookmarks:
+
+```json
+[
+  { "id": 470, "time": 23432 },
+  { "id": 453, "time": 234324 },
+  { "id": 445, "time": 987834 }
+]
 ```
 
 ```javascript
-function ex021(videosAndBookmarks) {
-  var videos = videosAndBookmarks.videos;
-  var bookmarks = videosAndBookmarks.bookmarks;
+function ex021(videos, bookmarks) {
   var counter, pairsLength;
 
   var videoIdAndBookmarkIdPairs = [];
@@ -815,10 +816,7 @@ function. For each video and bookmark pair, create a `{ videoId,
 bookmarkId }` pair.
 
 ```javascript
-function ex023(videosAndBookmarks) {
-  var videos = videosAndBookmarks.videos;
-  var bookmarks = videosAndBookmarks.bookmarks;
-
+function ex023(videos, bookmarks) {
   return Array.zip // complete this expression.
 }
 ```
