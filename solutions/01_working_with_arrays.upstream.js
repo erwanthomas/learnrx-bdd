@@ -286,6 +286,22 @@ function ex024(movieLists) {
   });
 }
 
+function ex025(lists, videos) {
+  return lists.map(function(list) {
+    return {
+      name: list.name,
+      videos:
+        videos.
+          filter(function(video) {
+            return video.listId === list.id;
+          }).
+          map(function(video) {
+            return {id: video.id, title: video.title};
+          })
+    };
+  });
+}
+
 module.exports = {
   '001': ex001,
   '002': ex002,
@@ -311,4 +327,5 @@ module.exports = {
   '022': ex022,
   '023': ex023,
   '024': ex024,
+  '025': ex025,
 };

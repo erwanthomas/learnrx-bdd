@@ -303,6 +303,21 @@ function sol024(movieLists) {
   });
 }
 
+function sol025(lists, videos) {
+  return lists.map(function (list) {
+    return {
+      name: list.name,
+      videos: videos
+        .filter(function (video) {
+          return video.listId === list.id;
+        })
+        .map(function (video) {
+          return { id: video.id, title: video.title };
+        })
+    };
+  });
+}
+
 module.exports = {
   '001': sol001,
   '002': sol002,
@@ -328,4 +343,5 @@ module.exports = {
   '022': sol022,
   '023': sol023,
   '024': sol024,
+  '025': sol025,
 };

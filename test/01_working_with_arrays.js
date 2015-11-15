@@ -223,4 +223,8 @@ describe('Working with arrays:', function () {
   describe('Exercise 24', function () {
     it('should retrieve { id, title, middle interesting time, smallest box art url } for every video', extendArraysAndCall(deepEqualTest('024')));
   });
+
+  describe('Exercise 25', function () {
+    it('should convert from arrays to trees', deepEqualTest('025'));
+  });
 });
