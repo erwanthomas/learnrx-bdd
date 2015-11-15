@@ -194,4 +194,8 @@ describe('Working with arrays:', function () {
   describe('Exercise 23', function () {
     it('should combine videos and bookmarks by index', extendArraysAndCall(deepEqualTest('023')));
   });
+
+  describe('Exercise 24', function () {
+    it('should retrieve { id, title, middle interesting time, smallest box art url } for every video', extendArraysAndCall(deepEqualTest('024')));
+  });
 });

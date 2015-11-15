@@ -281,6 +281,33 @@ function sol023(videosAndBookmarks) {
   });
 }
 
+function sol024(movieLists) {
+  function size(boxart) {
+    return boxart.width * boxart.height;
+  }
+
+  return movieLists.concatMap(function (movieList) {
+    return movieList.videos.concatMap(function (video) {
+      return Array.zip(
+        video.boxarts.reduce(function (prev, cur) {
+          return size(prev) < size(cur) ? prev : cur;
+        }),
+        video.interestingMoments.filter(function (moment) {
+          return moment.type === 'Middle';
+        }),
+        function (boxart, moment) {
+          return {
+            id: video.id,
+            title: video.title,
+            url: boxart.url,
+            time: moment.time
+          };
+        }
+      );
+    });
+  });
+}
+
 module.exports = {
   '001': sol001,
   '002': sol002,
@@ -305,4 +332,5 @@ module.exports = {
   '021': sol021,
   '022': sol022,
   '023': sol023,
+  '024': sol024,
 };
