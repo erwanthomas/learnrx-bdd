@@ -227,4 +227,8 @@ describe('Working with arrays:', function () {
   describe('Exercise 25', function () {
     it('should convert from arrays to trees', deepEqualTest('025'));
   });
+
+  describe('Exercise 26', function () {
+    it('should convert from arrays to deeper trees', extendArraysAndCall(deepEqualTest('026')));
+  });
 });

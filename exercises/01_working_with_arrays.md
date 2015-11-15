@@ -983,6 +983,105 @@ function ex025(lists, videos) {
 }
 ```
 
+Looks like you figured out that you can use `map` and `filter` to *join*
+two different arrays by a key. Now let's try a more complex example...
+
+*Exercise 26: Converting from Arrays to _deeper_ Trees*
+
+Let's try creating a deeper tree structure. This time we have 4 separate
+arrays each containing *lists*, *videos*, *boxarts*, and *bookmarks*
+respectively. Each object has a *parent id*, indicating its parent.
+
+- lists: same as before
+
+- videos: same as before
+
+- boxarts:
+
+```json
+[
+  { "videoId": 65432445, "width": 130, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/TheChamber130.jpg" },
+  { "videoId": 65432445, "width": 200, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/TheChamber200.jpg" },
+  { "videoId": 675465, "width": 200, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/Fracture200.jpg" },
+  { "videoId": 675465, "width": 120, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/Fracture120.jpg" },
+  { "videoId": 675465, "width": 300, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/Fracture300.jpg" },
+  { "videoId": 70111470, "width": 150, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/DieHard150.jpg" },
+  { "videoId": 70111470, "width": 200, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/DieHard200.jpg" },
+  { "videoId": 654356453, "width": 200, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/BadBoys200.jpg" },
+  { "videoId": 654356453, "width": 140, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/BadBoys140.jpg" }
+]
+```
+
+- bookmarks:
+
+```json
+[
+  { "videoId": 675465, "time": 3534543 },
+  { "videoId": 65432445, "time": 32432 },
+  { "videoId": 70111470, "time": 645243 },
+  { "videoId": 654356453, "time": 984934 }
+]
+```
+
+We want to build an array of list objects, each with a *name* and a
+*videos* array. The *videos* array will contain the video's *id*,
+*title*, *bookmark time*, and *smallest boxart url*. In other words we
+want to build the following structure:
+
+```json
+[
+  {
+    "name": "New Releases",
+    "videos": [
+      {
+        "id": 65432445,
+        "title": "The Chamber",
+        "time": 32432,
+        "boxart": "http://cdn-0.nflximg.com/images/2891/TheChamber130.jpg"
+      },
+      {
+        "id": 675465,
+        "title": "Fracture",
+        "time": 3534543,
+        "boxart": "http://cdn-0.nflximg.com/images/2891/Fracture120.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Thrillers",
+    "videos": [
+      {
+        "id": 70111470,
+        "title": "Die Hard",
+        "time": 645243,
+        "boxart": "http://cdn-0.nflximg.com/images/2891/DieHard150.jpg"
+      },
+      {
+        "id": 654356453,
+        "title": "Bad Boys",
+        "time": 984934,
+        "boxart": "http://cdn-0.nflximg.com/images/2891/BadBoys140.jpg"
+      }
+    ]
+  }
+]
+```
+
+```javascript
+function ex026(lists, videos, boxarts, bookmarks) {
+  return lists // complete this expression
+}
+```
+
+Wow! That's a large query, but the code is still small relative to the
+amount of work it's doing. If we rewrote this query with a series of
+loops our code would be much less self-describing. Loops don't give the
+reader any information about the kind of operation being performed.
+Every time you see a loop, you need to carefully read through the code
+to find out what's being done. Is it a projection? A filter? A
+reduction? Why use loops for querying data when we've demonstrated that
+the 5 functions can be used to create virtually any output we want?
+
 *Please don't pay attention to the following code:*
 
 ```javascript
@@ -1012,5 +1111,6 @@ module.exports = {
   '023': ex023,
   '024': ex024,
   '025': ex025,
+  '026': ex026,
 };
 ```

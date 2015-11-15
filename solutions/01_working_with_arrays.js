@@ -318,6 +318,45 @@ function sol025(lists, videos) {
   });
 }
 
+function sol026(lists, videos, boxarts, bookmarks) {
+  function size(boxart) {
+    return boxart.width * boxart.height;
+  }
+
+  return lists.map(function (list) {
+    return {
+      name: list.name,
+      videos: videos
+        .filter(function (video) {
+          return video.listId === list.id;
+        })
+        .concatMap(function (video) {
+          return Array.zip(
+            bookmarks
+              .filter(function (bookmark) {
+                return bookmark.videoId === video.id;
+              }),
+            boxarts
+              .filter(function (boxart) {
+                return boxart.videoId === video.id;
+              })
+              .reduce(function (prev, cur) {
+                return size(prev) < size(cur) ? prev : cur;
+              }),
+              function (bookmark, boxart) {
+                return {
+                  id: video.id,
+                  title: video.title,
+                  time: bookmark.time,
+                  boxart: boxart.url
+                };
+              }
+          );
+        })
+    };
+  });
+}
+
 module.exports = {
   '001': sol001,
   '002': sol002,
@@ -344,4 +383,5 @@ module.exports = {
   '023': sol023,
   '024': sol024,
   '025': sol025,
+  '026': sol026,
 };

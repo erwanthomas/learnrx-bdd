@@ -363,6 +363,31 @@ var listsAndVideos = {
   ]
 };
 
+var listsVideosBoxartsBookmarks = {
+  args: listsAndVideos.args.concat([
+    // boxarts
+    [
+      { "videoId": 65432445, "width": 130, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/TheChamber130.jpg" },
+      { "videoId": 65432445, "width": 200, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/TheChamber200.jpg" },
+      { "videoId": 675465, "width": 200, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/Fracture200.jpg" },
+      { "videoId": 675465, "width": 120, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/Fracture120.jpg" },
+      { "videoId": 675465, "width": 300, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/Fracture300.jpg" },
+      { "videoId": 70111470, "width": 150, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/DieHard150.jpg" },
+      { "videoId": 70111470, "width": 200, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/DieHard200.jpg" },
+      { "videoId": 654356453, "width": 200, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/BadBoys200.jpg" },
+      { "videoId": 654356453, "width": 140, "height": 200, "url": "http://cdn-0.nflximg.com/images/2891/BadBoys140.jpg" }
+    ],
+
+    // bookmarks
+    [
+      { "videoId": 675465, "time": 3534543 },
+      { "videoId": 65432445, "time": 32432 },
+      { "videoId": 70111470, "time": 645243 },
+      { "videoId": 654356453, "time": 984934 }
+    ]
+  ])
+};
+
 module.exports = {
   '001': names,
   '002': names,
@@ -389,4 +414,5 @@ module.exports = {
   '023': videosAndBookmarks,
   '024': movieListsWithInterestingMoments,
   '025': listsAndVideos,
+  '026': listsVideosBoxartsBookmarks,
 };
