@@ -8,13 +8,13 @@ function consoleTest(id) {
   return function () {
     var pconsole = new Pconsole();
 
-    function invoke(func, console, names) {
-      func(console, names);
+    function invoke(func, arg, console) {
+      func(console, arg);
       return console.clear();
     }
 
-    var solution = invoke(solutions(id), pconsole, data(id));
-    var exercise = invoke(exercises(id), pconsole, data(id));
+    var exercise = invoke(exercises(id), data(id), pconsole);
+    var solution = invoke(solutions(id), data(id), pconsole);
 
     expect(exercise).to.deep.equal(solution);
   };
@@ -230,5 +230,21 @@ describe('Working with arrays:', function () {
 
   describe('Exercise 26', function () {
     it('should convert from arrays to deeper trees', extendArraysAndCall(deepEqualTest('026')));
+  });
+
+  describe('Exercise 27', function () {
+    it('should print filtered stock price records', function () {
+      var pconsole = new Pconsole();
+
+      function invoke(func, prices, console) {
+        func(prices, console.log.bind(console));
+        return console.clear();
+      }
+
+      var exercise = invoke(exercises('027'), data('027'), pconsole);
+      var solution = invoke(solutions('027'), data('027'), pconsole);
+
+      expect(exercise).to.deep.equal(solution);
+    });
   });
 });

@@ -331,6 +331,25 @@ function ex026(lists, videos, boxarts, bookmarks) {
   });
 }
 
+function ex027(pricesNASDAQ, printRecord) {
+  var microsoftPrices,
+  now = new Date(),
+    tenDaysAgo = new Date( now.getFullYear(), now.getMonth(), now.getDate() - 10);
+
+  // use filter() to filter the trades for MSFT prices recorded any time after 10 days ago
+  microsoftPrices =
+    pricesNASDAQ.
+    filter(function(priceRecord) {
+    return priceRecord.name === 'MSFT' && priceRecord.timeStamp > tenDaysAgo;
+  });
+
+  // Print the trades to the output console
+  microsoftPrices.
+    forEach(function(priceRecord) {
+    printRecord(priceRecord);
+  });
+}
+
 module.exports = {
   '001': ex001,
   '002': ex002,
@@ -358,4 +377,5 @@ module.exports = {
   '024': ex024,
   '025': ex025,
   '026': ex026,
+  '027': ex027,
 };

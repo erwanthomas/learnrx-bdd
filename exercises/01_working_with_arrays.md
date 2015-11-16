@@ -1082,6 +1082,61 @@ to find out what's being done. Is it a projection? A filter? A
 reduction? Why use loops for querying data when we've demonstrated that
 the 5 functions can be used to create virtually any output we want?
 
+*Exercise 27: Stock ticker*
+
+Let's try an easier question. Let's say we have a collection of all of
+the prices for NASDAQ stocks over time. Every time the price of a stock
+changes on the NASDAQ ticker an entry is added to this collection. Let's
+say that ten days ago you bought shares in Microsoft, and now you want
+to print all of the MSFT share prices since then. Filter the collection
+for MSFT trades starting from ten days ago and print each price record
+(including the time stamp) using the *printRecord* function. *Note: this
+is not a trick question. It's as easy as it seems.*
+
+```javascript
+/* The pricesNASDAQ collection looks something like this...
+ * var pricesNASDAQ = [
+ * 	// ... from the NASDAQ's opening day
+ * 	{ name: "ANGI", price: 31.22, timeStamp: new Date(2011,11,15) },
+ * 	{ name: "MSFT", price: 32.32, timeStamp: new Date(2011,11,15) },
+ * 	{ name: "GOOG", price: 150.43, timeStamp: new Date(2011,11,15) },
+ * 	{ name: "ANGI", price: 28.44, timeStamp: new Date(2011,11,16) },
+ * 	{ name: "GOOG", price: 199.33, timeStamp: new Date(2011,11,16) },
+ * 	// ...and up to the present.
+ * ];
+ */
+function ex027(pricesNASDAQ, printRecord) {
+  var microsoftPrices;
+  var now;
+  var tenDaysAgo;
+
+  now = new Date();
+  tenDaysAgo = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 10);
+
+  microsoftPrices = pricesNASDAQ.filter(function (priceRecord) {
+    // complete this expression
+  });
+
+  microsoftPrices.forEach(printRecord);
+}
+```
+
+Now, NASDAQ price records continue to change after our program execution
+ended. How could our program take into account the records sampled after
+we ran it ? Do we need to rip a hole in the space-time continuum, so
+that our `pricesNASDAQ` array contain stock price records from the
+future ?
+
+The solution is that **`pricesNASDAQ` is _not_ be an array**. Unlike an
+array, which can only store a snapshot of stock prices, this new type
+can react to changes and update over time.
+
+In the next section I'll reveal the inner workings of this magical type.
+You'll learn how you can use it to model everything from mouse events to
+asynchronous JSON requests. Finally I'll show you how **you can query
+this type using the 5 query functions you already know**. It's about
+time we gave this magical type a name...
+
 *Please don't pay attention to the following code:*
 
 ```javascript
@@ -1112,5 +1167,6 @@ module.exports = {
   '024': ex024,
   '025': ex025,
   '026': ex026,
+  '027': ex027,
 };
 ```

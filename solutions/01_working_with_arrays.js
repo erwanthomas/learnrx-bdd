@@ -357,6 +357,21 @@ function sol026(lists, videos, boxarts, bookmarks) {
   });
 }
 
+function sol027(pricesNASDAQ, printRecord) {
+  var microsoftPrices;
+  var now;
+  var tenDaysAgo;
+
+  now = new Date();
+  tenDaysAgo = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 10);
+
+  microsoftPrices = pricesNASDAQ.filter(function (priceRecord) {
+    return priceRecord.name === 'MSFT' && priceRecord.timeStamp > tenDaysAgo;
+  });
+
+  microsoftPrices.forEach(printRecord);
+}
+
 module.exports = {
   '001': sol001,
   '002': sol002,
@@ -384,4 +399,5 @@ module.exports = {
   '024': sol024,
   '025': sol025,
   '026': sol026,
+  '027': sol027,
 };
